@@ -30,7 +30,8 @@ export default function App() {
   useEffect(() => {
     LocalAuthentication.isEnrolledAsync().then(res => console.log(res))
     LocalAuthentication.getEnrolledLevelAsync().then(res => console.log(res))
-    LocalAuthentication.authenticateAsync({promptMessage: "Please authenticate yourself", cancelLabel: true }).then(res ? setIsLoggedIn(true) : alert("Authentication Failed")).catch(err => console.log(err))
+    LocalAuthentication.authenticateAsync({promptMessage: "Please authenticate yourself", cancelLabel: true }).then(
+      res => console.log(res)).catch(err => console.log(err))
   }, []);
 
   return (
