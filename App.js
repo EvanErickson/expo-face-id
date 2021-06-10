@@ -23,8 +23,8 @@ async function getValueFor(key) {
 }
 
 export default function App() {
-  const [key, onChangeKey] = useState('');
-  const [value, onChangeValue] = useState('');
+  const [key, setKey] = useState('');
+  const [value, setValue] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -32,7 +32,11 @@ export default function App() {
     LocalAuthentication.getEnrolledLevelAsync().then(res => console.log(res))
     LocalAuthentication.authenticateAsync({promptMessage: "Please authenticate yourself", cancelLabel: true }).then(res => {
       console.log(res)
-      setIsLoggedIn(true)
+      if (res === true) {
+        setIsLoggedIn(true)
+      } else {
+        alert('Auth failed')
+      }
     }).catch(err => console.log(err))
   }, []);
 
@@ -45,14 +49,14 @@ export default function App() {
       <TextInput
       style={{ height: 40, width:200, borderColor: 'gray', borderWidth: 1 }}
       placeholder="Value"
-      onChangeText={key => onChangeKey(key)}
+      onChangeText={key => setKey(key)}
       value={key}
       />
       
       <TextInput
       style={{ height: 40, width:200, borderColor: 'gray', borderWidth: 1 }}
       placeholder="Value"
-      onChangeText={value => onChangeValue(value)}
+      onChangeText={value => setValue(value)}
       value={value}
       />
       <Button
