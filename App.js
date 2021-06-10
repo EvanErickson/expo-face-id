@@ -25,16 +25,22 @@ async function getValueFor(key) {
 export default function App() {
   const [key, onChangeKey] = useState('');
   const [value, onChangeValue] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     LocalAuthentication.isEnrolledAsync().then(res => console.log(res))
     LocalAuthentication.getEnrolledLevelAsync().then(res => console.log(res))
-    LocalAuthentication.authenticateAsync({promptMessage: "Give me your face", cancelLabel: true }).then(res => console.log(res)).catch(err => console.log(err))
+    LocalAuthentication.authenticateAsync({promptMessage: "Please authenticate yourself", cancelLabel: true }).then(res => {
+      console.log(res)
+      setIsLoggedIn(true)
+    }).catch(err => console.log(err))
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.paragraph}>Save an item, and grab it later!</Text>
+      {isLoggedIn && 
+      <View>
+      <Text style={styles.paragraph}>Save an item</Text>
       {/* {Add some TextInput components... } */}
       <TextInput
       style={{ height: 40, width:200, borderColor: 'gray', borderWidth: 1 }}
@@ -71,14 +77,8 @@ export default function App() {
         }}
         />
 
-      {/* <Text style={styles.paragraph}>🔐 Enter your key 🔐</Text>
-      <TextInput
-        style={styles.textInput}
-        onSubmitEditing={event => {
-          getValueFor(event.nativeEvent.text);
-        }}
-        placeholder="Enter the key for the value you want to get"
-      /> */}
+     </View>
+    }
     </View>
   );
 }
