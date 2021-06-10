@@ -32,10 +32,10 @@ export default function App() {
     LocalAuthentication.getEnrolledLevelAsync().then(res => console.log(res))
     LocalAuthentication.authenticateAsync({promptMessage: "Please authenticate yourself", cancelLabel: true }).then(res => {
       console.log(res)
-      if (res === true) {
+      if (res) {
         setIsLoggedIn(true)
       } else {
-        alert('Auth failed')
+        alert('Authentication failed')
       }
     }).catch(err => console.log(err))
   }, []);
