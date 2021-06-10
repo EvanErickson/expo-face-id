@@ -20,13 +20,15 @@
       "supportsTablet": true,
       "infoPlist": {
         "NSFaceIDUsageDescription": "Let users log in using face id"
-      }
+      },
+      "bundleIdentifier": "com.dj0threads.faceidtest"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.dj0threads.faceidtest"
     },
     "web": {
       "favicon": "./assets/favicon.png"
