@@ -31,8 +31,11 @@ export default function App() {
     LocalAuthentication.isEnrolledAsync().then(res => console.log(res))
     LocalAuthentication.getEnrolledLevelAsync().then(res => console.log(res))
     LocalAuthentication.authenticateAsync({promptMessage: "Please authenticate yourself", cancelLabel: true }).then(
-      res => alert(res)).catch(err => console.log(err))
-  }, []);
+      res => {
+        alert(res)
+        setIsLoggedIn(true)
+      }
+  )}, []);
 
   return (
     <View style={styles.container}>
