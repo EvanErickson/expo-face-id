@@ -33,9 +33,9 @@ export default function App() {
     LocalAuthentication.getEnrolledLevelAsync().then(res => console.log(res))
     LocalAuthentication.authenticateAsync({promptMessage: "Please authenticate yourself", cancelLabel: true }).then(
       res => {
-        setResponse(res)
+        setResponse(res.success)
         setIsLoggedIn(true)
-        alert(JSON.stringify(response))
+        alert(res.success)
       }
   )}, []);
 
@@ -46,11 +46,9 @@ export default function App() {
         width: '100%',
         height: '100%'
       }}>
-        <Text style={{fontSize: 30}}>{JSON.stringify(response)}</Text>
+        <Text style={{fontSize: 30}}>{JSON.stringify(response.success)}</Text>
         
-        {JSON.stringify(response)}
-
-        
+        {JSON.parse(response.success)}
 
 
       <Text style={styles.paragraph}>Save an item</Text>
