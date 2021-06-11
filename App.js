@@ -26,13 +26,14 @@ export default function App() {
   const [key, setKey] = useState('');
   const [value, setValue] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [response, setResponse] = useState({});
 
   useEffect(() => {
     LocalAuthentication.isEnrolledAsync().then(res => console.log(res))
     LocalAuthentication.getEnrolledLevelAsync().then(res => console.log(res))
     LocalAuthentication.authenticateAsync({promptMessage: "Please authenticate yourself", cancelLabel: true }).then(
       res => {
-        alert(res)
+        setResponse(res)
         setIsLoggedIn(true)
       }
   )}, []);
@@ -41,6 +42,16 @@ export default function App() {
     <View style={styles.container}>
       {isLoggedIn && 
       <View>
+
+      <Modal>
+        <Text>{response}</Text>
+
+        {response}
+
+        
+      </Modal>  
+
+
       <Text style={styles.paragraph}>Save an item</Text>
       {/* {Add some TextInput components... } */}
       <TextInput
