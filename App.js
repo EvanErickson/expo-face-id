@@ -35,6 +35,7 @@ export default function App() {
       res => {
         setResponse(res)
         setIsLoggedIn(true)
+        alert(JSON.stringify(response))
       }
   )}, []);
 
