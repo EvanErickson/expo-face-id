@@ -42,10 +42,9 @@ export default function App() {
     <View style={styles.container}>
       {isLoggedIn && 
       <View>
-
       <Modal>
         <Text>{response}</Text>
-
+        <Text>Hi</Text>
         {response}
 
         
