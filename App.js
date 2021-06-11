@@ -41,14 +41,15 @@ export default function App() {
   return (
     <View style={styles.container}>
       {isLoggedIn && 
-      <View>
-      <Modal>
-        <Text>{response}</Text>
-        <Text>Hi</Text>
-        {response}
+      <View style={{
+        width: '100%',
+        height: '100%'
+      }}>
+        <Text style={{fontSize: 30}}>{JSON.stringify(response)}</Text>
+        
+        {JSON.stringify(response)}
 
         
-      </Modal>  
 
 
       <Text style={styles.paragraph}>Save an item</Text>
@@ -98,6 +99,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: '100%',
+    height: '100%',
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
